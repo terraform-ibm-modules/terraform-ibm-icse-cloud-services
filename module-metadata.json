@@ -1,0 +1,340 @@
+{
+  "path": ".",
+  "variables": {
+    "cos": {
+      "name": "cos",
+      "type": "list(\n    object({\n      name                = string\n      use_data            = optional(bool)\n      resource_group_name = optional(string)\n      plan                = optional(string)\n      buckets = list(object({\n        name                  = string\n        storage_class         = string\n        endpoint_type         = string\n        force_delete          = bool\n        single_site_location  = optional(string)\n        region_location       = optional(string)\n        cross_region_location = optional(string)\n        kms_key               = optional(string)\n        allowed_ip            = optional(list(string))\n        hard_quota            = optional(number)\n        archive_rule = optional(object({\n          days    = number\n          enable  = bool\n          rule_id = optional(string)\n          type    = string\n        }))\n        activity_tracking = optional(object({\n          activity_tracker_crn = string\n          read_data_events     = bool\n          write_data_events    = bool\n        }))\n        metrics_monitoring = optional(object({\n          metrics_monitoring_crn  = string\n          request_metrics_enabled = optional(bool)\n          usage_metrics_enabled   = optional(bool)\n        }))\n      }))\n      keys = optional(\n        list(object({\n          name        = string\n          role        = string\n          enable_HMAC = bool\n        }))\n      )\n\n    })\n  )",
+      "description": "Object describing the cloud object storage instance, buckets, and keys. Set `use_data` to true to use existing instance instance",
+      "default": [],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 136
+      }
+    },
+    "cos_use_random_suffix": {
+      "name": "cos_use_random_suffix",
+      "type": "bool",
+      "description": "Add a randomize suffix to the end of each Object Storage resource created in this module.",
+      "default": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 130
+      }
+    },
+    "disable_key_management": {
+      "name": "disable_key_management",
+      "type": "bool",
+      "description": "OPTIONAL - If true, key management resources will not be created.",
+      "default": false,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 45
+      }
+    },
+    "key_management": {
+      "name": "key_management",
+      "type": "object({\n    name                      = string\n    use_hs_crypto             = optional(bool) # Will force data source to be used. If not true, will default to kms\n    use_data                  = optional(bool)\n    authorize_vpc_reader_role = optional(bool)\n    resource_group_name       = optional(string) # Resource group for key management resources\n  })",
+      "description": "Configuration for Key Management Service",
+      "default": {
+        "authorize_vpc_reader_role": true,
+        "name": "kms"
+      },
+      "pos": {
+        "filename": "variables.tf",
+        "line": 51
+      }
+    },
+    "keys": {
+      "name": "keys",
+      "type": "list(\n    object({\n      name            = string\n      root_key        = optional(bool)\n      payload         = optional(string)\n      key_ring        = optional(string) # Any key_ring added will be created\n      force_delete    = optional(bool)\n      endpoint        = optional(string) # can be public or private\n      iv_value        = optional(string) # (Optional, Forces new resource, String) Used with import tokens. The initialization vector (IV) that is generated when you encrypt a nonce. The IV value is required to decrypt the encrypted nonce value that you provide when you make a key import request to the service. To generate an IV, encrypt the nonce by running ibmcloud kp import-token encrypt-nonce. Only for imported root key.\n      encrypted_nonce = optional(string) # The encrypted nonce value that verifies your request to import a key to Key Protect. This value must be encrypted by using the key that you want to import to the service. To retrieve a nonce, use the ibmcloud kp import-token get command. Then, encrypt the value by running ibmcloud kp import-token encrypt-nonce. Only for imported root key.\n      policies = optional(\n        object({\n          rotation = optional(\n            object({\n              interval_month = number\n            })\n          )\n          dual_auth_delete = optional(\n            object({\n              enabled = bool\n            })\n          )\n        })\n      )\n    })\n  )",
+      "description": "List of keys to be created for the service",
+      "default": [],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 66
+      }
+    },
+    "prefix": {
+      "name": "prefix",
+      "type": "string",
+      "description": "A unique identifier for resources. Must begin with a lowercase letter and end with a lowercase letter or number. This prefix will be prepended to any resources provisioned by this template. Prefixes must be 16 or fewer characters.",
+      "default": "icse",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 5
+      }
+    },
+    "region": {
+      "name": "region",
+      "type": "string",
+      "description": "Region where VPC will be created. To find your VPC region, use `ibmcloud is regions` command to find available regions.",
+      "required": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 11
+      }
+    },
+    "secrets_manager": {
+      "name": "secrets_manager",
+      "type": "object({\n    use_secrets_manager = bool\n    name                = optional(string)\n    kms_key_name        = optional(string)\n    resource_group_name = optional(string)\n  })",
+      "description": "Map describing an optional secrets manager deployment",
+      "default": {
+        "use_secrets_manager": false
+      },
+      "pos": {
+        "filename": "variables.tf",
+        "line": 348
+      }
+    },
+    "service_endpoints": {
+      "name": "service_endpoints",
+      "type": "string",
+      "description": "Service endpoints. Can be `public`, `private`, or `public-and-private`",
+      "default": "private",
+      "pos": {
+        "filename": "variables.tf",
+        "line": 22
+      }
+    },
+    "tags": {
+      "name": "tags",
+      "type": "list(string)",
+      "description": "List of tags to apply to resources created by this module.",
+      "default": [],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 16
+      }
+    },
+    "use_resource_group_ids": {
+      "name": "use_resource_group_ids",
+      "type": "bool",
+      "description": "OPTIONAL - Use resource group IDs instead of passing in existing resource group names.",
+      "default": false,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 33
+      }
+    }
+  },
+  "outputs": {
+    "config_failure": {
+      "name": "config_failure",
+      "description": "configuration fail state for cos buckets containing unfound keys",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 83
+      }
+    },
+    "cos_buckets": {
+      "name": "cos_buckets",
+      "description": "List of COS bucket instances with shortname, instance_shortname, name, id, crn, and instance id.",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 46
+      }
+    },
+    "cos_instances": {
+      "name": "cos_instances",
+      "description": "List of COS resource instances with shortname, name, id, and crn.",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 41
+      }
+    },
+    "cos_keys": {
+      "name": "cos_keys",
+      "description": "List of COS bucket instances with shortname, instance_shortname, name, id, crn, and instance id.",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 51
+      }
+    },
+    "cos_suffix": {
+      "name": "cos_suffix",
+      "description": "Random suffix appended to COS resources.",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 36
+      }
+    },
+    "key_management_crn": {
+      "name": "key_management_crn",
+      "description": "CRN for KMS instance",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 10
+      }
+    },
+    "key_management_guid": {
+      "name": "key_management_guid",
+      "description": "GUID for KMS instance",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 15
+      }
+    },
+    "key_management_name": {
+      "name": "key_management_name",
+      "description": "Name of key management service",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 5
+      }
+    },
+    "key_rings": {
+      "name": "key_rings",
+      "description": "Key rings created by module",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 20
+      }
+    },
+    "keys": {
+      "name": "keys",
+      "description": "List of names and ids for keys created.",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 25
+      }
+    },
+    "secrets_manager_guid": {
+      "name": "secrets_manager_guid",
+      "description": "guid of secrets manager instance",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 72
+      }
+    },
+    "secrets_manager_id": {
+      "name": "secrets_manager_id",
+      "description": "id of secrets manager instance",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 67
+      }
+    },
+    "secrets_manager_name": {
+      "name": "secrets_manager_name",
+      "description": "Name of secrets manager instance",
+      "pos": {
+        "filename": "outputs.tf",
+        "line": 62
+      }
+    }
+  },
+  "required_core": [
+    "\u003e=1.0"
+  ],
+  "required_providers": {
+    "ibm": {
+      "source": "IBM-Cloud/ibm",
+      "version_constraints": [
+        "\u003e=1.43.0"
+      ]
+    }
+  },
+  "managed_resources": {
+    "ibm_iam_authorization_policy.policy": {
+      "mode": "managed",
+      "type": "ibm_iam_authorization_policy",
+      "name": "policy",
+      "provider": {
+        "name": "ibm"
+      },
+      "pos": {
+        "filename": "secrets_manager.tf",
+        "line": 34
+      }
+    },
+    "ibm_resource_instance.secrets_manager": {
+      "mode": "managed",
+      "type": "ibm_resource_instance",
+      "name": "secrets_manager",
+      "attributes": {
+        "count": "secrets_manager",
+        "location": "region",
+        "name": "prefix",
+        "parameters": "secrets_manager",
+        "resource_group_id": "use_resource_group_ids"
+      },
+      "provider": {
+        "name": "ibm"
+      },
+      "pos": {
+        "filename": "secrets_manager.tf",
+        "line": 61
+      }
+    }
+  },
+  "data_resources": {
+    "data.ibm_resource_group.resource_group": {
+      "mode": "data",
+      "type": "ibm_resource_group",
+      "name": "resource_group",
+      "attributes": {
+        "for_each": "use_resource_group_ids"
+      },
+      "provider": {
+        "name": "ibm"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 5
+      }
+    }
+  },
+  "module_calls": {
+    "cloud_object_storage": {
+      "name": "cloud_object_storage",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git?ref=v1.0.0",
+      "attributes": {
+        "cos": "cos",
+        "key_management_keys": "disable_key_management",
+        "key_management_service_guid": "disable_key_management",
+        "key_management_service_name": "disable_key_management",
+        "prefix": "prefix",
+        "region": "region",
+        "service_endpoints": "service_endpoints",
+        "tags": "tags",
+        "use_random_suffix": "cos_use_random_suffix"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 61
+      }
+    },
+    "encryption_key_map": {
+      "name": "encryption_key_map",
+      "source": "./config_modules/list_to_map",
+      "attributes": {
+        "list": "disable_key_management"
+      },
+      "pos": {
+        "filename": "secrets_manager.tf",
+        "line": 49
+      }
+    },
+    "key_management": {
+      "name": "key_management",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.0",
+      "attributes": {
+        "authorize_vpc_reader_role": "key_management",
+        "for_each": "disable_key_management",
+        "keys": "keys",
+        "name": "key_management",
+        "prefix": "prefix",
+        "region": "region",
+        "resource_group_id": "use_resource_group_ids",
+        "service_endpoints": "service_endpoints",
+        "tags": "tags",
+        "use_data": "key_management",
+        "use_hs_crypto": "key_management"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 36
+      }
+    }
+  }
+}
