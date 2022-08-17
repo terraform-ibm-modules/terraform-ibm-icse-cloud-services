@@ -56,10 +56,10 @@ variable "key_management" {
   description = "Configuration for Key Management Service"
   type = object({
     name                      = string
-    use_hs_crypto             = optional(bool) // Will force data source to be used. If not true, will default to kms
+    use_hs_crypto             = optional(bool) # Will force data source to be used. If not true, will default to kms
     use_data                  = optional(bool)
     authorize_vpc_reader_role = optional(bool)
-    resource_group_name       = optional(string) // Resource group for key management resources
+    resource_group_name       = optional(string) # Resource group for key management resources
   })
   default = {
     name                      = "kms"

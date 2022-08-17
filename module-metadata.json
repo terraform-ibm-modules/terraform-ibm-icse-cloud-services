@@ -33,7 +33,7 @@
     },
     "key_management": {
       "name": "key_management",
-      "type": "object({\n    name                      = string\n    use_hs_crypto             = optional(bool) // Will force data source to be used. If not true, will default to kms\n    use_data                  = optional(bool)\n    authorize_vpc_reader_role = optional(bool)\n    resource_group_name       = optional(string) // Resource group for key management resources\n  })",
+      "type": "object({\n    name                      = string\n    use_hs_crypto             = optional(bool) # Will force data source to be used. If not true, will default to kms\n    use_data                  = optional(bool)\n    authorize_vpc_reader_role = optional(bool)\n    resource_group_name       = optional(string) # Resource group for key management resources\n  })",
       "description": "Configuration for Key Management Service",
       "default": {
         "authorize_vpc_reader_role": true,
@@ -287,7 +287,7 @@
   "module_calls": {
     "cloud_object_storage": {
       "name": "cloud_object_storage",
-      "source": "git://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git?ref=v1.0.0",
       "attributes": {
         "cos": "cos",
         "key_management_keys": "disable_key_management",
@@ -317,7 +317,7 @@
     },
     "key_management": {
       "name": "key_management",
-      "source": "git://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.0",
       "attributes": {
         "authorize_vpc_reader_role": "key_management",
         "for_each": "disable_key_management",
