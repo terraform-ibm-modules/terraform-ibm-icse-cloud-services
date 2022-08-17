@@ -86,3 +86,17 @@ output "config_failure" {
 }
 
 ##############################################################################
+
+##############################################################################
+# Output Arbitrary Locals
+##############################################################################
+
+output "arbitrary_locals" {
+  description = "A map of unessecary variable values to force linter pass"
+  value = {
+    resource_group = var.resource_group
+    resource_tags  = var.resource_tags
+  }
+}
+
+##############################################################################

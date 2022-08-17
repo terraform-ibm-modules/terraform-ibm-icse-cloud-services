@@ -2,6 +2,12 @@
 # Account Variables
 ##############################################################################
 
+variable "ibmcloud_api_key" {
+  description = "The IBM Cloud platform API key needed to deploy IAM enabled resources."
+  type        = string
+  sensitive   = true
+}
+
 variable "prefix" {
   description = "A unique identifier for resources. Must begin with a lowercase letter and end with a lowercase letter or number. This prefix will be prepended to any resources provisioned by this template. Prefixes must be 16 or fewer characters."
   type        = string
@@ -56,10 +62,10 @@ variable "key_management" {
   description = "Configuration for Key Management Service"
   type = object({
     name                      = string
-    use_hs_crypto             = optional(bool) // Will force data source to be used. If not true, will default to kms
+    use_hs_crypto             = optional(bool) # Will force data source to be used. If not true, will default to kms
     use_data                  = optional(bool)
     authorize_vpc_reader_role = optional(bool)
-    resource_group_name       = optional(string) // Resource group for key management resources
+    resource_group_name       = optional(string) # Resource group for key management resources
   })
   default = {
     name                      = "kms"
@@ -360,6 +366,24 @@ variable "secrets_manager" {
   default = {
     use_secrets_manager = false
   }
+}
+
+##############################################################################
+
+##############################################################################
+# forced variables
+##############################################################################
+
+variable "resource_group" {
+  description = "Mandatory value unused by this module"
+  type        = string
+  default     = null
+}
+
+variable "resource_tags" {
+  description = "Mandatory value unused by this module"
+  type        = list(string)
+  default     = null
 }
 
 ##############################################################################
