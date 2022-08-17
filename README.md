@@ -1,5 +1,7 @@
 <!-- Update the title to match the module name and add a description -->
-# Terraform IBM Module Template
+# Terraform IBM Module ICSE Cloud Services Module
+
+This module is used to create and manage resources for Cloud Object Storage, Key Management, and Secrets Manager.
 
 <!-- UPDATE BADGE: Update the link for the badge below-->
 [![Build Status](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/actions/workflows/ci.yml)
@@ -8,119 +10,44 @@
 
 <!-- Remove the content in this H2 heading after completing the steps -->
 
-## Submit a new module
+---
 
-:+1::tada: Thank you for taking the time to contribute! :tada::+1:
+## Table of Contents
 
-This template repository exists to help you create Terraform modules for IBM Cloud.
+1. [Usage](#usage)
+1. [Examples](#examples)
+1. [Modules](#modules)
+1. [Key Management](#key-management)
+1. [Cloud Object Storage](#cloud-object-storage)
+    - [Object Storage Service Authorizations](#object-storage-service-authorizations)
+    - [Object Storage Variables](#object-storage-variables)
+1. [Secrets Manager](#secrets-manager)
+1. [Resources](#resources)
+1. [Inputs](#inputs)
+1. [Outputs](#outputs)
+1. [Contributing](#contributing)
 
-The default structure includes the following files:
-
-- `README.md`: A description of the module
-- `main.tf`: The logic for the module
-- `version.tf`: The required terraform and provider versions
-- `variables.tf`: The input variables for the module
-- `outputs.tf`: The values that are output from the module
-
-For more information, see [Module structure](https://terraform-ibm-modules.github.io/documentation/#/module-structure) in the project documentation.
-
-You can add other content to support what your module does and how it works. For example, you might add a `scripts/` directory that contains shell scripts that are run by a `local-exec` `null_resource` in the Terraform module.
-
-Follow this process to create and submit a Terraform module.
-
-### Create a repo from this repo template
-
-1.  Create a repository from this repository template by clicking `Use this template` in the upper right of the GitHub UI.
-
-    For more information about creating a repository from a template, see the [GitHub docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-1.  Select `terraform-ibm-modules` as the owner.
-1.  Enter a name for the module in format `terraform-ibm-<NAME>`, where `<NAME>` reflects the type of infrastructure that the module manages.
-
-    Use hyphens as delimiters for names with multiple words (for example, terraform-ibm-`activity-tracker`).
-1.  Provide a short description of the module.
-
-    The description is displayed under the repository title on the [organization page](https://github.com/terraform-ibm-modules) and in the **About** section of the repository. Use the description to help users understand what your repo does by looking at the description.
-
-### Clone the repo and set up your development environment
-
-Locally clone the new repository and set up your development environment by completing the tasks in [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
-
-### Update the Terraform files
-
-Implement the logic for your module by updating the `main.tf`, `version.tf`, `variables.tf`, and `outputs.tf` Terraform files. For more information, see [Creating Terraform on IBM Cloud templates](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-create-tf-config).
-
-### Create examples and tests
-
-Add one or more examples in the `examples` directory that consume your new module, and configure tests for them in the `tests` directory.
-
-### Update the content in the readme file
-
-After you implement the logic for your module and create examples and tests, update this readme file in your repository by following these steps:
-
-1.  Update the title heading and add a description about your module.
-1.  Update the badge links.
-1.  Remove all the content in this H2 heading section.
-1.  Complete the [Usage](#usage), [Required IAM access policies](#required-iam-access-policies), and [Examples](#examples) sections. The [Requirements](#requirements) section is populated by a pre-commit hook.
-
-### Commit your code and submit your module for review
-
-1.  Before you commit any code, review [Contributing to the IBM Cloud Terraform modules project](https://terraform-ibm-modules.github.io/documentation/#/contribute-module) in the project documentation.
-1.  Create a pull request for review.
-
-### Post-merge steps
-After the first PR for your module is merged, follow these post-merge steps:
-
-1.  Create a PR to enable the upgrade test by removing the `t.Skip` line in `tests/pr_test.go`.
-
-<!-- Remove the content in this previous H2 heading -->
+---
 
 ## Usage
 
-<!--
-Add an example of the use of the module in the following code block.
-
-Use real values instead of "var.<var_name>" or other placeholder values
-unless real values don't help users know what to change.
--->
-
-```hcl
-
+```terraform
+module cloud_services {
+  source                 = "github.com/terraform-ibm-modules/terraform-ibm-icse-cloud-services"
+  prefix                 = "my-prefix"
+  region                 = "us-south"
+  tags                   = ["icse"]
+  service_endpoints      = "private"
+}
 ```
-
-## Required IAM access policies
-
-<!-- PERMISSIONS REQUIRED TO RUN MODULE
-If this module requires permissions, uncomment the following block and update
-the sample permissions, following the format.
-Replace the sample Account and IBM Cloud service names and roles with the
-information in the console at
-Manage > Access (IAM) > Access groups > Access policies.
--->
-
-<!--
-You need the following permissions to run this module.
-
-- Account Management
-    - **Sample Account Service** service
-        - `Editor` platform access
-        - `Manager` service access
-- IAM Services
-    - **Sample Cloud Service** service
-        - `Administrator` platform access
--->
-
-<!-- NO PERMISSIONS FOR MODULE
-If no permissions are required for the module, uncomment the following
-statement instead the previous block.
--->
-
-<!-- No permissions are needed to run this module.-->
 
 <!-- BEGIN EXAMPLES HOOK -->
 ## Examples
 
 - [Examples](examples)
 <!-- END EXAMPLES HOOK -->
+
+---
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -129,6 +56,188 @@ statement instead the previous block.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.43.0 |
+
+---
+
+## Key Management
+
+This module uses the [ICSE Key Management Module](https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management) to create and manage Key Management Resources
+
+### Key Management Variables
+
+```terraform
+
+variable "disable_key_management" {
+  description = "OPTIONAL - If true, key management resources will not be created."
+  type        = bool
+  default     = false
+}
+
+```
+### Key Management Service Instance
+
+The following variable is used to manage the key management service instance:
+
+```terraform
+variable "key_management" {
+  description = "Configuration for Key Management Service"
+  type = object({
+    name                      = string
+    use_hs_crypto             = optional(bool)
+    use_data                  = optional(bool)
+    authorize_vpc_reader_role = optional(bool)
+    resource_group_id         = optional(string)
+  })
+  ...
+}
+```
+
+Key Name                  | Description
+--------------------------|------------
+name                      | Name of the service, created services will have the prefix variable prepended to the beginning of the name
+use_hs_crypto             | Will force data source to be used. If not true, will default to kms this module cannot create and initialize HPCS instances
+use_data                  | Get a Key Protect instance from Data
+authorize_vpc_reader_role | Add an IAM Service Authorization Policy to allow VPC block storage resource to be encrypted keys from this instance
+resource_group_id         | Resource group for key management resources
+
+### Key Management Keys
+
+Management keys for this instance are created using the [keys variable](./variables.tf#L70)
+
+```terraform
+variable "keys" {
+  description = "List of keys to be created for the service"
+  type = list(
+    object({
+      name            = string           # Name of the key
+      root_key        = optional(bool)   # is a root key
+      payload         = optional(string)
+      key_ring        = optional(string) # Any key_ring added will be created
+      force_delete    = optional(bool)   # Force delete key. Will be true unless this value is set to `false`
+      endpoint        = optional(string) # can be public or private
+      iv_value        = optional(string) # (Optional, Forces new resource, String) Used with import tokens. The initialization vector (IV) that is generated when you encrypt a nonce. The IV value is required to decrypt the encrypted nonce value that you provide when you make a key import request to the service. To generate an IV, encrypt the nonce by running ibmcloud kp import-token encrypt-nonce. Only for imported root key.
+      encrypted_nonce = optional(string) # The encrypted nonce value that verifies your request to import a key to Key Protect. This value must be encrypted by using the key that you want to import to the service. To retrieve a nonce, use the ibmcloud kp import-token get command. Then, encrypt the value by running ibmcloud kp import-token encrypt-nonce. Only for imported root key.
+      policies = optional(
+        object({
+          rotation = optional(
+            object({
+              interval_month = number
+            })
+          )
+          dual_auth_delete = optional(
+            object({
+              enabled = bool
+            })
+          )
+        })
+      )
+    })
+  )
+  ...
+}
+```
+
+---
+
+## Cloud Object Storage
+
+This template uses the [ICSE Cloud Object Storage Module](https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos) to create and manage Object Storage resources.
+
+### Object Storage Service Authorizations
+
+If this module is using key management, an IAM Service to Service authorization is created to allow each Object Storage instance to Read from the key management service. This authorization allows COS buckets to be encrypted with a Key Management key. Use the `kms_key` bucket object key to specify a key for each bucket to use.
+
+### Object Storage Variables
+
+COS instances, buckets, and key deployments are created and managed using the [cos variable](./variables.tf#L140).
+
+To use a random suffix for Object Storage resource creation, set the [cos_use_random_suffix variable](./variables.tf#L134)
+
+```terraform
+variable "cos" {
+  description = "Object describing the cloud object storage instance, buckets, and keys. Set `use_data` to false to create instance"
+  type = list(
+    object({
+      name                = string           # Name of the COS instance
+      use_data            = optional(bool)   # Optional - Get existing COS instance from data
+      resource_group_name = optional(string) # Name of resource group where COS should be provisioned
+      plan                = optional(string) # Can be `lite` or `standard`
+      ##############################################################################
+      # For more information on bucket creation, see the Terraform Documentation
+      # https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cos_bucket
+      ##############################################################################
+      buckets = list(object({
+        name                  = string           # Name of the bucket
+        storage_class         = string           # Storage class for the bucket
+        endpoint_type         = string
+        force_delete          = bool
+        single_site_location  = optional(string)
+        region_location       = optional(string)
+        cross_region_location = optional(string)
+        kms_key               = optional(string) # Encryption Key name from keys variable
+        allowed_ip            = optional(list(string))
+        hard_quota            = optional(number)
+        archive_rule = optional(object({
+          days    = number
+          enable  = bool
+          rule_id = optional(string)
+          type    = string
+        }))
+        activity_tracking = optional(object({
+          activity_tracker_crn = string
+          read_data_events     = bool
+          write_data_events    = bool
+        }))
+        metrics_monitoring = optional(object({
+          metrics_monitoring_crn  = string
+          request_metrics_enabled = optional(bool)
+          usage_metrics_enabled   = optional(bool)
+        }))
+      }))
+      ##############################################################################
+      # Create Any number of keys
+      ##############################################################################
+      keys = optional(
+        list(object({
+          name        = string
+          role        = string
+          enable_HMAC = bool
+        }))
+      )
+
+    })
+  )
+```
+
+---
+
+## Secrets Manager
+
+A secrets manager instance can be created using the [secrets_manager variable](./variables.tf#L352). The `secrets_manager`
+
+```terraform
+variable "secrets_manager" {
+  description = "Map describing an optional secrets manager deployment"
+  type = object({
+    use_secrets_manager = bool             # Create Secrets Manager Instance
+    name                = optional(string) # Name of Secrets Manager Instance
+    kms_key_name        = optional(string) # Name of KMS key from key_management module
+    resource_group_id   = optional(string) # Resource Group ID for the secrets manager instance
+  })
+  default = {
+    use_secrets_manager = false
+  }
+}
+```
+
+### Secrets Manager Service Authorization
+
+If Secrets Manager and Key Management are enabled and an encryption key name is provided, an authorization is created to allow the secrets manager instance to read from the Key Management instance.
+
+---
+
+
+---
 
 ## Modules
 
