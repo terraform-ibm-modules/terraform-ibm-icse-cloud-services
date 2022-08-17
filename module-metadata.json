@@ -8,7 +8,7 @@
       "default": [],
       "pos": {
         "filename": "variables.tf",
-        "line": 141
+        "line": 136
       }
     },
     "cos_use_random_suffix": {
@@ -18,7 +18,7 @@
       "default": true,
       "pos": {
         "filename": "variables.tf",
-        "line": 135
+        "line": 130
       }
     },
     "disable_key_management": {
@@ -28,7 +28,7 @@
       "default": false,
       "pos": {
         "filename": "variables.tf",
-        "line": 50
+        "line": 45
       }
     },
     "key_management": {
@@ -41,7 +41,7 @@
       },
       "pos": {
         "filename": "variables.tf",
-        "line": 56
+        "line": 51
       }
     },
     "keys": {
@@ -51,7 +51,7 @@
       "default": [],
       "pos": {
         "filename": "variables.tf",
-        "line": 71
+        "line": 66
       }
     },
     "prefix": {
@@ -71,7 +71,7 @@
       "required": true,
       "pos": {
         "filename": "variables.tf",
-        "line": 16
+        "line": 11
       }
     },
     "secrets_manager": {
@@ -83,7 +83,7 @@
       },
       "pos": {
         "filename": "variables.tf",
-        "line": 353
+        "line": 348
       }
     },
     "service_endpoints": {
@@ -93,7 +93,7 @@
       "default": "private",
       "pos": {
         "filename": "variables.tf",
-        "line": 27
+        "line": 22
       }
     },
     "tags": {
@@ -103,7 +103,7 @@
       "default": [],
       "pos": {
         "filename": "variables.tf",
-        "line": 21
+        "line": 16
       }
     },
     "use_resource_group_ids": {
@@ -113,7 +113,7 @@
       "default": false,
       "pos": {
         "filename": "variables.tf",
-        "line": 38
+        "line": 33
       }
     }
   },
