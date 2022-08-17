@@ -8,7 +8,7 @@
       "default": [],
       "pos": {
         "filename": "variables.tf",
-        "line": 140
+        "line": 141
       }
     },
     "cos_use_random_suffix": {
@@ -18,7 +18,7 @@
       "default": true,
       "pos": {
         "filename": "variables.tf",
-        "line": 134
+        "line": 135
       }
     },
     "disable_key_management": {
@@ -28,7 +28,7 @@
       "default": false,
       "pos": {
         "filename": "variables.tf",
-        "line": 49
+        "line": 50
       }
     },
     "key_management": {
@@ -41,7 +41,7 @@
       },
       "pos": {
         "filename": "variables.tf",
-        "line": 55
+        "line": 56
       }
     },
     "keys": {
@@ -51,14 +51,14 @@
       "default": [],
       "pos": {
         "filename": "variables.tf",
-        "line": 70
+        "line": 71
       }
     },
     "prefix": {
       "name": "prefix",
       "type": "string",
       "description": "A unique identifier for resources. Must begin with a lowercase letter and end with a lowercase letter or number. This prefix will be prepended to any resources provisioned by this template. Prefixes must be 16 or fewer characters.",
-      "required": true,
+      "default": "icse",
       "pos": {
         "filename": "variables.tf",
         "line": 5
@@ -71,7 +71,7 @@
       "required": true,
       "pos": {
         "filename": "variables.tf",
-        "line": 15
+        "line": 16
       }
     },
     "secrets_manager": {
@@ -83,7 +83,7 @@
       },
       "pos": {
         "filename": "variables.tf",
-        "line": 352
+        "line": 353
       }
     },
     "service_endpoints": {
@@ -93,7 +93,7 @@
       "default": "private",
       "pos": {
         "filename": "variables.tf",
-        "line": 26
+        "line": 27
       }
     },
     "tags": {
@@ -103,7 +103,7 @@
       "default": [],
       "pos": {
         "filename": "variables.tf",
-        "line": 20
+        "line": 21
       }
     },
     "use_resource_group_ids": {
@@ -113,7 +113,7 @@
       "default": false,
       "pos": {
         "filename": "variables.tf",
-        "line": 37
+        "line": 38
       }
     }
   },
