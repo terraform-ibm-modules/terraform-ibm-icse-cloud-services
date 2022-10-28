@@ -102,7 +102,7 @@ variable "keys" {
 
   validation {
     error_message = "Each key must have a unique name."
-    condition     = length(var.keys) == 0 ? true : length(distinct(var.keys.*.name)) == length(var.keys.*.name)
+    condition     = length(var.keys) == 0 ? true : length(distinct(var.keys[*].name)) == length(var.keys[*].name)
   }
 
   validation {
@@ -228,13 +228,13 @@ variable "cos" {
     condition = length(var.cos) == 0 ? true : length(
       flatten([
         for instance in var.cos :
-        instance.buckets.*.name
+        instance.buckets[*].name
       ])
       ) == length(
       distinct(
         flatten([
           for instance in var.cos :
-          instance.buckets.*.name
+          instance.buckets[*].name
         ])
       )
     )
