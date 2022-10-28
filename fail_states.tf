@@ -12,7 +12,7 @@ locals {
       ] if length(instance.buckets) > 0
     ])
   )
-  kms_key_names = var.keys.*.name
+  kms_key_names = var.keys[*].name
   cos_buckets_have_valid_keys = length([
     for bucket in local.cos_bucket_key_names :
     false if !contains(local.kms_key_names, bucket)
