@@ -229,7 +229,7 @@
     },
     "cos_suffix": {
       "name": "cos_suffix",
-      "description": "Random suffix appended to COS resources.",
+      "description": "Random suffix appended to the end of COS resources",
       "value": "module.cloud_object_storage.cos_suffix",
       "pos": {
         "filename": "outputs.tf",
