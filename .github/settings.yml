@@ -6,3 +6,15 @@
 # the settings of this repository are updated immediately.
 #
 _extends: repo-settings
+
+# repo-specific settings
+#
+repository:
+  # See https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=module-names-and-descriptions
+
+  # By changing this field, you rename the repository.
+  name: "terraform-ibm-icse-cloud-services"
+
+  # The description is displayed under the repository name on the
+  # organization page and in the 'About' section of the repository.
+  description: "Creates and manages resources for Cloud Object Storage, Key Management, and Secrets Manager."
