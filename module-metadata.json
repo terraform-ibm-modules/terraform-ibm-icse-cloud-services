@@ -542,7 +542,7 @@
     },
     "key_management": {
       "name": "key_management",
-      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.1",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.2",
       "attributes": {
         "authorize_vpc_reader_role": "key_management",
         "for_each": "disable_key_management",
