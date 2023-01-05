@@ -69,7 +69,7 @@ No permissions are needed to run this module.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.48.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.49.0 |
 
 ## Modules
 
