@@ -77,7 +77,7 @@ No permissions are needed to run this module.
 |------|--------|---------|
 | <a name="module_cloud_object_storage"></a> [cloud\_object\_storage](#module\_cloud\_object\_storage) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git | v1.0.1 |
 | <a name="module_encryption_key_map"></a> [encryption\_key\_map](#module\_encryption\_key\_map) | ./config_modules/list_to_map | n/a |
-| <a name="module_key_management"></a> [key\_management](#module\_key\_management) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git | v1.0.2 |
+| <a name="module_key_management"></a> [key\_management](#module\_key\_management) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git | v1.0.3 |
 
 ## Resources
 
