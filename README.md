@@ -1,33 +1,13 @@
-<!-- Update the title to match the module name and add a description -->
-# Terraform IBM Module ICSE Cloud Services Module
+<!-- BEGIN MODULE HOOK -->
 
-This module is used to create and manage resources for Cloud Object Storage, Key Management, and Secrets Manager.
+# Terraform IBM Module ICSE Cloud Services Module
 
 <!-- UPDATE BADGE: Update the link for the badge below-->
 [![Build Status](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/actions/workflows/ci.yml/badge.svg)](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/actions/workflows/ci.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
-<!-- Remove the content in this H2 heading after completing the steps -->
-
----
-
-## Table of Contents
-
-1. [Usage](#usage)
-1. [Examples](#examples)
-1. [Modules](#modules)
-1. [Key Management](#key-management)
-1. [Cloud Object Storage](#cloud-object-storage)
-    - [Object Storage Service Authorizations](#object-storage-service-authorizations)
-    - [Object Storage Variables](#object-storage-variables)
-1. [Secrets Manager](#secrets-manager)
-1. [Resources](#resources)
-1. [Inputs](#inputs)
-1. [Outputs](#outputs)
-1. [Contributing](#contributing)
-
----
+This module creates and manages resources for Cloud Object Storage, Key Management, and Secrets Manager.
 
 ## Usage
 
@@ -41,13 +21,47 @@ module cloud_services {
 }
 ```
 
+<!-- PERMISSIONS REQUIRED TO RUN MODULE
+
+If this module requires permissions, uncomment the following block and update
+the sample permissions, following the format.
+Replace the sample Account and IBM Cloud service names and roles with the
+information in the console at
+Manage > Access (IAM) > Access groups > Access policies.
+-->
+
+<!--
+## Required IAM access policies
+
+You need the following permissions to run this module.
+
+- Account Management
+    - **Sample Account Service** service
+        - `Editor` platform access
+        - `Manager` service access
+    - IAM Services
+        - **Sample Cloud Service** service
+            - `Administrator` platform access
+-->
+
+<!-- NO PERMISSIONS FOR MODULE
+If no permissions are required for the module, uncomment the following
+statement instead the previous block.
+-->
+
+<!--
+## Required IAM access policies
+
+No permissions are needed to run this module.
+-->
+
+<!-- END MODULE HOOK -->
+
 <!-- BEGIN EXAMPLES HOOK -->
 ## Examples
 
 - [Examples](examples)
 <!-- END EXAMPLES HOOK -->
-
----
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -55,7 +69,7 @@ module cloud_services {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.3.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.43.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.49.0 |
 
 ## Modules
 
@@ -63,7 +77,7 @@ module cloud_services {
 |------|--------|---------|
 | <a name="module_cloud_object_storage"></a> [cloud\_object\_storage](#module\_cloud\_object\_storage) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git | v1.0.1 |
 | <a name="module_encryption_key_map"></a> [encryption\_key\_map](#module\_encryption\_key\_map) | ./config_modules/list_to_map | n/a |
-| <a name="module_key_management"></a> [key\_management](#module\_key\_management) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git | v1.0.1 |
+| <a name="module_key_management"></a> [key\_management](#module\_key\_management) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git | v1.0.3 |
 
 ## Resources
 
@@ -107,11 +121,12 @@ module cloud_services {
 | <a name="output_secrets_manager_id"></a> [secrets\_manager\_id](#output\_secrets\_manager\_id) | id of secrets manager instance |
 | <a name="output_secrets_manager_name"></a> [secrets\_manager\_name](#output\_secrets\_manager\_name) | Name of secrets manager instance |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN CONTRIBUTING HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
-
 ## Contributing
 
-You can report issues and request features for this module in the [terraform-ibm-issue-tracker](https://github.com/terraform-ibm-modules/terraform-ibm-issue-tracker/issues) repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
+You can report issues and request features for this module in GitHub issues in the module repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
 
 To set up your local development environment, see [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
+<!-- END CONTRIBUTING HOOK -->

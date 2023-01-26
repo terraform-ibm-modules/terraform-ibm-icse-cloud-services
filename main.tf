@@ -35,7 +35,7 @@ data "ibm_resource_group" "resource_group" {
 
 module "key_management" {
   for_each                  = var.disable_key_management == true ? {} : { "key_management" : true }
-  source                    = "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.1"
+  source                    = "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.3"
   region                    = var.region
   prefix                    = var.prefix
   tags                      = var.tags

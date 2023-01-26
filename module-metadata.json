@@ -308,7 +308,7 @@
     "ibm": {
       "source": "IBM-Cloud/ibm",
       "version_constraints": [
-        "\u003e=1.43.0"
+        "\u003e=1.49.0"
       ]
     }
   },
@@ -542,7 +542,7 @@
     },
     "key_management": {
       "name": "key_management",
-      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.1",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.3",
       "attributes": {
         "authorize_vpc_reader_role": "key_management",
         "for_each": "disable_key_management",
