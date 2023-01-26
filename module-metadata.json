@@ -365,7 +365,7 @@
   "module_calls": {
     "cloud_object_storage": {
       "name": "cloud_object_storage",
-      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git?ref=v1.0.1",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git?ref=v2.0.0",
       "attributes": {
         "cos": "cos",
         "key_management_keys": "disable_key_management",
@@ -542,7 +542,7 @@
     },
     "key_management": {
       "name": "key_management",
-      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v1.0.3",
+      "source": "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git?ref=v2.0.0",
       "attributes": {
         "authorize_vpc_reader_role": "key_management",
         "for_each": "disable_key_management",
