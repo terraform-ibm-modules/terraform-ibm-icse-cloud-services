@@ -59,7 +59,7 @@ locals {
 ##############################################################################
 
 module "cloud_object_storage" {
-  source                      = "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git?ref=v2.0.1"
+  source                      = "git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-cos.git?ref=v2.0.0"
   region                      = var.region
   prefix                      = var.prefix
   tags                        = var.tags
