@@ -62,6 +62,7 @@ No permissions are needed to run this module.
 ## Examples
 
 - [Examples](examples)
+
 <!-- END EXAMPLES HOOK -->
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
