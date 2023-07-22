@@ -66,14 +66,14 @@ No permissions are needed to run this module.
 <!-- END EXAMPLES HOOK -->
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.3.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >=1.49.0 |
 
-## Modules
+### Modules
 
 | Name | Source | Version |
 |------|--------|---------|
@@ -81,7 +81,7 @@ No permissions are needed to run this module.
 | <a name="module_encryption_key_map"></a> [encryption\_key\_map](#module\_encryption\_key\_map) | ./config_modules/list_to_map | n/a |
 | <a name="module_key_management"></a> [key\_management](#module\_key\_management) | git::https://github.com/terraform-ibm-modules/terraform-ibm-icse-key-management.git | v2.0.0 |
 
-## Resources
+### Resources
 
 | Name | Type |
 |------|------|
@@ -89,7 +89,7 @@ No permissions are needed to run this module.
 | [ibm_resource_instance.secrets_manager](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_instance) | resource |
 | [ibm_resource_group.resource_group](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/resource_group) | data source |
 
-## Inputs
+### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -105,7 +105,7 @@ No permissions are needed to run this module.
 | <a name="input_tags"></a> [tags](#input\_tags) | List of tags to apply to resources created by this module. | `list(string)` | `[]` | no |
 | <a name="input_use_resource_group_ids"></a> [use\_resource\_group\_ids](#input\_use\_resource\_group\_ids) | OPTIONAL - Use resource group IDs instead of passing in existing resource group names. | `bool` | `false` | no |
 
-## Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
