@@ -2,6 +2,17 @@
 
 # Terraform IBM Module ICSE Cloud Services Module
 
+## Module archived
+
+:spider_web: This repo is no longer maintained and is archived. Use the following supported public modules instead:
+- [terraform-ibm-cos](https://github.com/terraform-ibm-modules/terraform-ibm-cos)
+- [terraform-ibm-secrets-manager](https://github.com/terraform-ibm-modules/terraform-ibm-secrets-manager)
+- [terraform-ibm-key-protect-all-inclusive](https://github.com/terraform-ibm-modules/terraform-ibm-key-protect-all-inclusive)
+- [terraform-ibm-kms-key](https://github.com/terraform-ibm-modules/terraform-ibm-kms-key)
+- [terraform-ibm-kms-key-ring](https://github.com/terraform-ibm-modules/terraform-ibm-kms-key-ring)
+
+---
+
 <!-- UPDATE BADGE: Update the link for the badge below-->
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-icse-cloud-services?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-icse-cloud-services/releases/latest)
